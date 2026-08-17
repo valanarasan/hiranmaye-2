@@ -1,0 +1,183 @@
+.blog-hero-section {
+  padding: 150px 0 40px;
+  text-align: center;
+  width: 100%;
+}
+
+.blog-search-bar-wrap {
+  max-width: 640px;
+  margin: 32px auto 0;
+  position: relative;
+}
+
+.blog-search-input {
+  width: 100%;
+  padding: 16px 24px 16px 52px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(15, 23, 42, 0.15);
+  background: #FFFFFF;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  outline: none;
+  box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.05);
+  transition: var(--transition-fast);
+}
+
+.blog-search-input:focus {
+  border-color: var(--brand-blue-600);
+  box-shadow: 0 10px 32px -4px rgba(37, 99, 235, 0.15);
+}
+
+.blog-search-icon {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+}
+
+/* Articles Grid */
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 32px;
+  margin: 48px 0;
+  width: 100%;
+}
+
+.blog-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: var(--radius-lg);
+  padding: 36px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: var(--transition-smooth);
+  cursor: pointer;
+}
+
+.blog-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--brand-blue-600);
+  box-shadow: 0 20px 44px -10px rgba(15, 23, 42, 0.1);
+}
+
+.blog-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 18px;
+}
+
+.blog-category-tag {
+  background: var(--bg-accent-soft);
+  color: var(--brand-blue-600);
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+}
+
+.blog-card-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--brand-navy-900);
+  line-height: 1.35;
+  margin-bottom: 14px;
+}
+
+.blog-card-excerpt {
+  font-size: 0.96rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  flex-grow: 1;
+}
+
+.blog-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 18px;
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--brand-navy-900);
+}
+
+/* Newsletter Card */
+.newsletter-card {
+  background: linear-gradient(135deg, #0A1128 0%, #0F172A 50%, #1E3A8A 100%);
+  border-radius: var(--radius-xl);
+  padding: 64px 48px;
+  text-align: center;
+  color: #FFFFFF;
+  margin: 72px 0;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.newsletter-form {
+  display: flex;
+  max-width: 580px;
+  margin: 32px auto 0;
+  gap: 14px;
+}
+
+.newsletter-input {
+  flex-grow: 1;
+  padding: 16px 22px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  color: #FFFFFF;
+  outline: none;
+  font-size: 1rem;
+}
+
+.newsletter-input::placeholder {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* FAQ Section */
+.faq-section-wrap {
+  margin: 72px 0;
+  width: 100%;
+}
+
+.faq-accordion-item {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  border-radius: var(--radius-md) !important;
+  margin-bottom: 14px !important;
+  box-shadow: none !important;
+}
+
+.faq-accordion-item::before {
+  display: none !important;
+}
+
+.faq-question-text {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  color: var(--brand-navy-900);
+  font-size: 1.1rem;
+}
+
+.faq-answer-text {
+  font-size: 0.98rem;
+  line-height: 1.75;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 640px) {
+  .newsletter-form {
+    flex-direction: column;
+  }
+}

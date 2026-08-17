@@ -1,0 +1,135 @@
+.home-section-padding {
+  padding: 110px 0;
+  width: 100%;
+}
+
+.home-section-alt {
+  background: #FFFFFF;
+}
+
+.who-we-are-box {
+  background: #FFFFFF;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: var(--radius-xl);
+  padding: 64px 56px;
+  box-shadow: 0 20px 48px -12px rgba(15, 23, 42, 0.05);
+  width: 100%;
+}
+
+.who-we-are-content {
+  font-size: clamp(1.05rem, 1.25vw, 1.22rem);
+  line-height: 1.85;
+  color: var(--text-secondary);
+}
+
+.who-we-are-highlight {
+  color: var(--brand-navy-900);
+  font-weight: 700;
+}
+
+/* Process Timeline (5-Step Framework) */
+.process-timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+  position: relative;
+  margin-top: 48px;
+  width: 100%;
+}
+
+.process-step-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: var(--radius-lg);
+  padding: 36px 28px;
+  position: relative;
+  transition: var(--transition-smooth);
+}
+
+.process-step-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--brand-blue-600);
+  box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.12);
+}
+
+.process-step-num {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+  margin-bottom: 16px;
+}
+
+.process-step-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--brand-navy-900);
+  margin-bottom: 12px;
+}
+
+.process-step-desc {
+  font-size: 0.96rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+/* Final CTA Section */
+.final-cta-card {
+  background: linear-gradient(135deg, #0A1128 0%, #0F172A 50%, #1E3A8A 100%);
+  border-radius: var(--radius-xl);
+  padding: 80px 56px;
+  text-align: center;
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 24px 60px -12px rgba(15, 23, 42, 0.4);
+  width: 100%;
+}
+
+.final-cta-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.25) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.final-cta-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(2.2rem, 4vw, 3.6rem);
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 20px;
+  line-height: 1.15;
+}
+
+.final-cta-desc {
+  font-size: clamp(1.05rem, 1.3vw, 1.25rem);
+  line-height: 1.7;
+  max-width: 760px;
+  margin: 0 auto 40px;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.final-cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .who-we-are-box {
+    padding: 36px 24px;
+  }
+  .final-cta-card {
+    padding: 56px 24px;
+  }
+}

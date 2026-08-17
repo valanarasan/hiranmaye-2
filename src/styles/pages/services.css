@@ -1,0 +1,85 @@
+.services-page-header {
+  padding: 150px 0 40px;
+  text-align: center;
+  width: 100%;
+}
+
+.services-filter-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 36px 0 52px;
+}
+
+.filter-tab-btn {
+  padding: 10px 24px;
+  border-radius: var(--radius-full);
+  font-size: 0.92rem;
+  font-weight: 600;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: #FFFFFF;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.filter-tab-btn:hover {
+  border-color: var(--brand-blue-600);
+  color: var(--brand-blue-600);
+}
+
+.filter-tab-btn.active {
+  background: var(--gradient-brand);
+  color: #FFFFFF;
+  border-color: transparent;
+  box-shadow: 0 8px 22px -4px rgba(15, 23, 42, 0.25);
+}
+
+.services-full-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 32px;
+  width: 100%;
+}
+
+/* Deep Dive SEO/AEO/GEO Section */
+.seo-trio-breakdown {
+  background: #FFFFFF;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: var(--radius-xl);
+  padding: 56px 48px;
+  margin: 72px 0;
+  box-shadow: 0 20px 48px -12px rgba(15, 23, 42, 0.06);
+  width: 100%;
+}
+
+.seo-trio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 36px;
+}
+
+.seo-trio-col {
+  background: var(--bg-secondary);
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.seo-trio-tag {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--brand-navy-900);
+}
+
+@media (max-width: 900px) {
+  .seo-trio-grid {
+    grid-template-columns: 1fr;
+  }
+}
