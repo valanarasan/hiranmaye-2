@@ -50,7 +50,7 @@ export const App: React.FC = () => {
   return (
     <ThemeProvider theme={muiTheme}>
       <CssBaseline />
-      <Router>
+      <Router basename={import.meta.env.BASE_URL}>
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
           {/* Global Sticky Navbar */}
           <Navbar onOpenBooking={() => handleOpenBooking()} />
