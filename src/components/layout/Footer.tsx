@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { companyInfo } from '../../data/companyData';
 import { servicesData } from '../../data/servicesData';
 import { Instagram, Facebook, Youtube, MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { BrandLogo } from '../common/BrandLogo';
 
 export const Footer: React.FC = () => {
   return (
@@ -11,12 +12,8 @@ export const Footer: React.FC = () => {
         <div className="footer-grid">
           {/* Brand Col */}
           <div className="footer-brand-col">
-            <Link to="/" className="brand-logo">
-              <div className="brand-symbol">H</div>
-              <div>
-                <span className="brand-text-name">HIRANMAYE</span>
-                <span className="brand-text-sub">DIGITAL</span>
-              </div>
+            <Link to="/" style={{ textDecoration: 'none', display: 'inline-block', marginBottom: '8px' }}>
+              <BrandLogo size="md" showTagline={true} />
             </Link>
 
             <p className="footer-brand-desc">
@@ -90,7 +87,7 @@ export const Footer: React.FC = () => {
         {/* Bottom Bar */}
         <div className="footer-bottom-bar">
           <div>
-            © {new Date().getFullYear()} HIRANMAYE DIGITAL. All rights reserved. Transforming businesses through strategic digital growth.
+            © {new Date().getFullYear()} Hiranmaye Digital. All rights reserved. Strategy drives growth.
           </div>
           <div style={{ display: 'flex', gap: '20px' }}>
             <Link to="/about" style={{ color: 'inherit', textDecoration: 'none' }}>Privacy Policy</Link>

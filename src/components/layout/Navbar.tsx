@@ -6,6 +6,8 @@ import {
 } from '@mui/material';
 import { Menu as MenuIcon, Close as CloseIcon } from '@mui/icons-material';
 
+import { BrandLogo } from '../common/BrandLogo';
+
 interface NavbarProps {
   onOpenBooking: () => void;
 }
@@ -34,13 +36,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
   return (
     <header className={`navbar-wrapper ${scrolled ? 'navbar-scrolled' : ''}`}>
       <nav className="navbar-container">
-        {/* Brand Logo */}
-        <Link to="/" className="brand-logo">
-          <div className="brand-symbol">H</div>
-          <div>
-            <span className="brand-text-name">HIRANMAYE</span>
-            <span className="brand-text-sub">DIGITAL</span>
-          </div>
+        {/* Brand Logo with Official Golden Lotus */}
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          <BrandLogo size="sm" showTagline={true} />
         </Link>
 
         {/* Desktop Links */}
@@ -99,12 +97,9 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenBooking }) => {
         >
           <Box>
             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 4 }}>
-              <div className="brand-logo">
-                <div className="brand-symbol" style={{ width: 36, height: 36, fontSize: '1rem' }}>H</div>
-                <div>
-                  <span className="brand-text-name" style={{ fontSize: '1rem' }}>HIRANMAYE</span>
-                </div>
-              </div>
+              <Link to="/" onClick={() => setMobileOpen(false)} style={{ textDecoration: 'none' }}>
+                <BrandLogo size="sm" showTagline={true} />
+              </Link>
               <IconButton onClick={() => setMobileOpen(false)} size="small" aria-label="close mobile menu">
                 <CloseIcon />
               </IconButton>
