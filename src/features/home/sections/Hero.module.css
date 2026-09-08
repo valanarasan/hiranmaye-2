@@ -1,0 +1,112 @@
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-top: calc(var(--header-h) + var(--space-6));
+  padding-bottom: var(--space-8);
+  overflow: hidden;
+}
+
+.content {
+  position: relative;
+  z-index: var(--z-content);
+  max-width: 62ch;
+}
+
+.eyebrowRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.rule {
+  height: 1px;
+  width: 2.5rem;
+  background: var(--accent);
+  flex: none;
+}
+
+.headline {
+  margin-bottom: var(--space-5);
+}
+
+.headline em {
+  font-style: italic;
+  color: var(--accent-deep);
+}
+
+.subcopy {
+  max-width: 56ch;
+  margin-bottom: var(--space-6);
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-8);
+}
+
+.prompt {
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--hairline);
+  max-width: 46rem;
+}
+
+.promptLabel {
+  margin-bottom: var(--space-4);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.scrollHint {
+  position: absolute;
+  left: 50%;
+  bottom: var(--space-5);
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  z-index: var(--z-content);
+  color: var(--faint);
+  font-size: var(--step--2);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.scrollLine {
+  width: 1px;
+  height: 2.25rem;
+  background: linear-gradient(to bottom, var(--hairline-strong), transparent);
+  position: relative;
+  overflow: hidden;
+}
+
+.scrollLine::after {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 40%;
+  background: var(--accent);
+  animation: travel 2.4s var(--ease-in-out) infinite;
+}
+
+@keyframes travel {
+  0% { transform: translateY(-110%); }
+  100% { transform: translateY(260%); }
+}
+
+@media (max-width: 900px) {
+  .scrollHint { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scrollLine::after { animation: none; }
+}

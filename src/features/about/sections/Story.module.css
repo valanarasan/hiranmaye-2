@@ -1,0 +1,25 @@
+.wrap {
+  max-width: var(--container-narrow);
+  margin-inline: auto;
+  text-align: center;
+  display: grid;
+  gap: var(--space-5);
+}
+
+.question {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--step-3);
+  line-height: 1.14;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+
+.quoteMark {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: var(--step-5);
+  line-height: 0.6;
+  color: var(--accent);
+  margin-bottom: var(--space-3);
+}

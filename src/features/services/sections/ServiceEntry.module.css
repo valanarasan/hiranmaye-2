@@ -1,0 +1,112 @@
+.entry {
+  padding-block: var(--space-7);
+  border-bottom: 1px solid var(--hairline);
+  scroll-margin-top: calc(var(--header-h) + var(--space-5));
+}
+
+.entry:last-child { border-bottom: 0; }
+
+.top {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+.num {
+  font-size: var(--step--2);
+  letter-spacing: 0.16em;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: var(--step-3);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.promise {
+  font-size: var(--step-1);
+  font-weight: 300;
+  color: var(--ink-2);
+  max-width: 44ch;
+  margin-bottom: var(--space-5);
+}
+
+.blocks {
+  display: grid;
+  gap: var(--space-5);
+  max-width: 62ch;
+}
+
+.block {
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr);
+  gap: var(--space-4);
+  align-items: baseline;
+}
+
+.blockLabel {
+  font-size: var(--step--2);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+
+.outcome {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.closer {
+  margin-top: var(--space-5);
+  font-family: var(--font-serif);
+  font-size: var(--step-2);
+  line-height: 1.18;
+  letter-spacing: -0.012em;
+  color: var(--accent-deep);
+}
+
+.facets {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-5);
+  margin-top: var(--space-6);
+  border-top: 1px solid var(--hairline);
+  padding-top: var(--space-5);
+}
+
+.facet {
+  display: grid;
+  gap: var(--space-2);
+  align-content: start;
+}
+
+.facetTitle {
+  font-size: var(--step-1);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.facetPromise {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--step-1);
+  color: var(--accent-deep);
+  line-height: 1.2;
+}
+
+.facetBody {
+  font-size: var(--step--1);
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.cta { margin-top: var(--space-5); }
+
+@media (max-width: 720px) {
+  .block { grid-template-columns: 1fr; gap: var(--space-2); }
+  .facets { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,20 @@
+.reveal {
+  opacity: 0;
+  transform: translateY(var(--_shift, 18px));
+  transition:
+    opacity var(--dur-slow) var(--ease-out),
+    transform var(--dur-slow) var(--ease-out);
+  transition-delay: var(--_delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.static {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}

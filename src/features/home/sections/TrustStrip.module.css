@@ -1,0 +1,32 @@
+.strip {
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  padding-block: var(--space-6);
+  background: var(--bg);
+}
+
+.headline {
+  text-align: center;
+  margin-bottom: var(--space-5);
+}
+
+.stages {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3) var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.stage {
+  font-size: var(--step--1);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.arrow {
+  color: var(--accent);
+  font-size: var(--step--1);
+}

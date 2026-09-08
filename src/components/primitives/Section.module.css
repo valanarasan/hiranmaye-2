@@ -1,0 +1,18 @@
+.section {
+  position: relative;
+  padding-block: var(--space-9);
+}
+
+.sm { padding-block: var(--space-7); }
+.lg { padding-block: var(--space-10); }
+.none { padding-block: 0; }
+
+.surface { background: var(--surface); }
+
+.ink {
+  background: var(--surface-ink);
+  color: var(--on-ink);
+}
+
+.divided { border-top: 1px solid var(--hairline); }
+.ink.divided { border-top-color: var(--hairline-ink); }

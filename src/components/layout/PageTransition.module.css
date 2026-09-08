@@ -1,0 +1,12 @@
+.page {
+  animation: enter var(--dur-slow) var(--ease-out) both;
+}
+
+@keyframes enter {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page { animation: none; }
+}

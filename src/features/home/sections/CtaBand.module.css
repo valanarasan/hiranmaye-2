@@ -1,0 +1,27 @@
+.band {
+  text-align: center;
+}
+
+.inner {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-5);
+  max-width: 46rem;
+  margin-inline: auto;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: var(--step-4);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.title em { font-style: italic; color: var(--accent-deep); }
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  justify-content: center;
+}

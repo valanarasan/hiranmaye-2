@@ -1,0 +1,21 @@
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: var(--space-8);
+  align-items: start;
+}
+
+.lead {
+  font-family: var(--font-serif);
+  font-size: var(--step-3);
+  line-height: 1.1;
+  letter-spacing: -0.018em;
+}
+
+.lead em { font-style: italic; color: var(--accent-deep); }
+
+.body { display: grid; gap: var(--space-4); max-width: 58ch; }
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; gap: var(--space-6); }
+}

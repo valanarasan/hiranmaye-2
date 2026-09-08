@@ -1,0 +1,26 @@
+.header {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 62ch;
+}
+
+.center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.eyebrowRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--faint);
+}
+
+.center .eyebrowRow { justify-content: center; }
+
+.rule {
+  height: 1px;
+  width: clamp(1.5rem, 4vw, 3rem);
+  background: var(--accent);
+  flex: none;
+}

@@ -1,0 +1,89 @@
+.button {
+  --_bg: transparent;
+  --_fg: var(--ink);
+  --_border: transparent;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  border: 1px solid var(--_border);
+  background: var(--_bg);
+  color: var(--_fg);
+  border-radius: var(--radius-pill);
+  font-size: var(--step--1);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+
+.button:hover { transform: translateY(-1px); }
+.button:active { transform: translateY(0); }
+
+.button[disabled] {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* sizes */
+.sm { padding: 0.5rem 1rem; }
+.md { padding: 0.72rem 1.5rem; }
+.lg { padding: 0.95rem 2rem; font-size: var(--step-0); }
+
+/* variants */
+.solid {
+  --_bg: var(--ink);
+  --_fg: var(--on-ink);
+  --_border: var(--ink);
+}
+.solid:hover { --_bg: #1d1d20; --_border: #1d1d20; }
+
+.accent {
+  --_bg: var(--accent);
+  --_fg: #fff;
+  --_border: var(--accent);
+}
+.accent:hover { --_bg: var(--accent-deep); --_border: var(--accent-deep); }
+
+.outline {
+  --_border: var(--hairline-strong);
+  --_fg: var(--ink);
+}
+.outline:hover { --_border: var(--ink); --_bg: var(--surface); }
+
+.ghost { --_fg: var(--muted); }
+.ghost:hover { --_fg: var(--ink); --_bg: var(--surface); }
+
+.inverse {
+  --_bg: var(--on-ink);
+  --_fg: var(--ink);
+  --_border: var(--on-ink);
+}
+.inverse:hover { --_bg: #fff; }
+
+.link {
+  padding: 0;
+  border-radius: 0;
+  --_fg: var(--ink);
+  border: 0;
+  border-bottom: 1px solid var(--hairline-strong);
+  border-radius: 0;
+}
+.link:hover {
+  transform: none;
+  border-bottom-color: var(--accent);
+  --_fg: var(--accent-deep);
+}
+
+.block { width: 100%; }
+
+.arrow {
+  transition: transform var(--dur-mid) var(--ease-out);
+}
+.button:hover .arrow { transform: translateX(3px); }

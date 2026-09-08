@@ -1,0 +1,60 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: inherit;
+  line-height: 1;
+}
+
+.mark {
+  width: 1.85rem;
+  height: auto;
+  color: var(--accent);
+  flex: none;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.logo:hover .mark {
+  transform: translateY(-2px) scale(1.03);
+}
+
+.words {
+  display: grid;
+  gap: 0.12rem;
+}
+
+.word {
+  font-family: var(--font-serif);
+  font-size: 1.16rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.tagline {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.62rem;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+  line-height: 1;
+}
+
+/* Stacked, centred lockup for the footer */
+.stacked {
+  flex-direction: column;
+  gap: var(--space-3);
+  text-align: center;
+}
+
+.stacked .mark { width: 2.9rem; }
+.stacked .word { font-size: 1.5rem; }
+.stacked .tagline { font-size: 0.74rem; }
+
+.onDark .tagline { color: var(--on-ink-muted); }
+
+@media (max-width: 480px) {
+  .tagline { display: none; }
+  .mark { width: 1.6rem; }
+}

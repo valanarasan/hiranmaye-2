@@ -1,0 +1,50 @@
+.hero {
+  padding-top: calc(var(--header-h) + var(--space-8));
+  padding-bottom: var(--space-8);
+  border-bottom: 1px solid var(--hairline);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  right: -8%;
+  top: -30%;
+  width: 46rem;
+  height: 46rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(200 137 46 / 10%), transparent 62%);
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  z-index: var(--z-content);
+  max-width: 56rem;
+}
+
+.eyebrowRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.rule {
+  height: 1px;
+  width: 2.5rem;
+  background: var(--accent);
+  flex: none;
+}
+
+.headline { margin-bottom: var(--space-5); }
+
+.lead { max-width: 58ch; }
+
+.paragraphs {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 62ch;
+  margin-top: var(--space-5);
+}
