@@ -1,7 +1,7 @@
 # Hiranmaye Digital
 
 Marketing site for HIRANMAYE DIGITAL — a white-themed, minimal five-page site
-with a WebGL "Liquid Gold" hero.
+with a WebGL "Fragmentation → Coherence" hero.
 
 **Brand:** navy `#101f36` carries the dark weight, gold `#cf9a28` is the single
 accent, and the page stays white. Playfair Display (the wordmark's own Didone)
@@ -26,23 +26,41 @@ npm run format     # prettier
 
 Node 20+ recommended (built and verified on Node 22).
 
-## The hero
+## The hero — Fragmentation → Coherence
 
-`src/components/three/` holds the WebGL scene: a raymarched signed-distance
-field. Several spheres orbit on different frequencies and are joined with a
-smooth minimum, so the surface reads as one liquid body that never repeats.
-The pointer subtracts a soft sphere — a dent that relaxes out over about a
-second — and scroll slowly turns the form.
+Your own copy is the brief: *"Most businesses don't have a marketing problem.
+They have a fragmentation problem."* The hero is that sentence, in glass.
 
-Shading is a procedural studio. There is no HDR file to download: the
-environment is generated in the shader (dark ground, bright room, one crisp
-horizon, a strip softbox above and a fill card below) and tinted by the brand
-gold. A hard-ish horizon in the reflection is what makes a surface read as
-polished metal rather than plastic. Rays that miss a bounding sphere are
-discarded immediately, so empty pixels cost almost nothing, and the distance to
-the surface measured in pixels gives a free antialiased silhouette.
+Fifty-two shards float in a white void. At rest they drift — scattered,
+directionless. As the page scrolls, or as the cursor approaches, they sweep in
+and lock onto a lathe-turned form, each piece stretching to fill its seat in a
+ring so the pieces meet rather than dot a surface. Scroll back and it comes
+apart again. The whole positioning argument, in about four seconds, without a
+word of explanation.
 
-Three independent gates decide whether it runs, each owned by its own hook:
+Because nobody reads a hero before they touch it, the scene also performs the
+cycle once on its own a second after load — gather, hold, release — and only
+then hands control to the scroll and the pointer.
+
+**How it is drawn.** Each shard is its own faceted geometry (no two alike; a
+cluster of identical pieces reads as a pattern, not as broken glass), shaded by
+a custom material against a procedural studio. There is no HDR file to
+download: the environment is generated in the shader. Two details do most of
+the work —
+
+- The studio has a genuinely **dark floor**. Glass on a white page only reads
+  if downward-bent rays have something to carry; a high-key room returns white
+  on white and the shards disappear.
+- **Beer–Lambert absorption**: the longer a ray's path through the glass, the
+  more it absorbs, so edge-on facets go cool and deep while face-on facets stay
+  clear. That tonal difference is what gives a colourless shard its form.
+
+Each channel is refracted at a slightly different index, so the edges break
+into faint dispersion. Shards are drawn back-to-front (three sorts transparent
+objects for us) with depth writing off.
+
+Three independent gates decide whether it runs at all, each owned by its own
+hook:
 
 | Gate | Hook | Question |
 | --- | --- | --- |
@@ -50,17 +68,16 @@ Three independent gates decide whether it runs, each owned by its own hook:
 | Consent | `useReducedMotion` | Has the user asked for less motion? |
 | Timing | `useDeferredMount` | Is the browser idle yet? |
 
-If any gate says no, `SceneFallback` renders instead — a still of the same gold
-body built from gradients, at zero JavaScript cost. `three` is behind a `React.lazy` boundary and
-is the only dynamic import in the app, so it never touches the initial bundle.
-`FrameGovernor` samples real frame rate and steps device pixel ratio down if the
-scene drops below 48 fps, and the render loop stops entirely once the hero
+If any gate says no, `SceneFallback` renders instead — scattered glass in SVG,
+the idea at its first beat, at zero JavaScript cost. `three` is behind a
+`React.lazy` boundary and is the only dynamic import in the app, so it never
+touches the initial bundle. `FrameGovernor` steps device pixel ratio down if
+the scene drops below 48 fps, and the render loop stops entirely once the hero
 scrolls out of view.
 
-Scene size, viscosity, placement and colours live in `src/content/scene.ts` —
-tune the hero there rather than in the GLSL. The body is sized as a fraction of
-viewport height, so it holds the same share of the screen on a laptop and on a
-5K display.
+Shard count, cluster size, the vessel's proportions, drift and placement all
+live in `src/content/scene.ts`; the vessel's silhouette is the `profileRadius`
+function in `ShardField.tsx`. Tune the hero there rather than in the GLSL.
 
 ## Architecture
 

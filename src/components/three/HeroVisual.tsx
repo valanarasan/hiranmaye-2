@@ -5,7 +5,7 @@ import { SceneFallback } from './SceneFallback';
 import styles from './HeroVisual.module.css';
 
 /** The only dynamic import of `three` in the application. */
-const GoldScene = lazy(() => import('./GoldScene'));
+const GlassScene = lazy(() => import('./GlassScene'));
 
 /**
  * The gate. It decides *whether* WebGL runs; it does not know how the scene is
@@ -30,7 +30,7 @@ export function HeroVisual() {
       {useWebGL ? (
         <Suspense fallback={<SceneFallback />}>
           <div className={styles.canvas}>
-            <GoldScene config={heroScene} active={inView} />
+            <GlassScene config={heroScene} active={inView} />
           </div>
         </Suspense>
       ) : (

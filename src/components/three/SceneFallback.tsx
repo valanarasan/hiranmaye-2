@@ -1,48 +1,65 @@
+import { useMemo } from 'react';
 import styles from './SceneFallback.module.css';
+
+interface Shard {
+  points: string;
+  opacity: number;
+  rim: boolean;
+}
 
 /**
  * The static face of the hero: shown while the WebGL chunk loads, and shown
- * permanently on reduced-motion, low-memory or no-WebGL devices. A single
- * still of the same gold body, built from gradients — no JavaScript, no
- * network request, no canvas.
+ * permanently on reduced-motion, low-memory or no-WebGL devices. It holds the
+ * same idea at its first beat — scattered glass, not yet resolved — using
+ * gradients and polygons only.
  */
 export function SceneFallback() {
+  const shards = useMemo<Shard[]>(() => {
+    let seed = 20260908;
+    const rand = () => {
+      seed = (seed * 1664525 + 1013904223) % 4294967296;
+      return seed / 4294967296;
+    };
+
+    return Array.from({ length: 26 }, () => {
+      const cx = 22 + rand() * 60;
+      const cy = 18 + rand() * 64;
+      const scale = 4 + rand() * 7;
+      const sides = 5;
+      const rotation = rand() * Math.PI;
+
+      const points = Array.from({ length: sides }, (_, i) => {
+        const a = rotation + (i / sides) * Math.PI * 2;
+        const r = scale * (0.55 + rand() * 0.55);
+        return `${(cx + Math.cos(a) * r * 0.62).toFixed(2)},${(cy + Math.sin(a) * r).toFixed(2)}`;
+      }).join(' ');
+
+      return { points, opacity: 0.1 + rand() * 0.3, rim: rand() > 0.62 };
+    });
+  }, []);
+
   return (
     <div className={styles.fallback} aria-hidden="true">
       <div className={styles.wash} />
-      <svg className={styles.svg} viewBox="0 0 320 320" focusable="false">
+      <svg className={styles.svg} viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
         <defs>
-          <radialGradient id="hd-body" cx="38%" cy="30%" r="78%">
-            <stop offset="0%" stopColor="#fff4d8" />
-            <stop offset="26%" stopColor="#eec55f" />
-            <stop offset="58%" stopColor="#c8912a" />
-            <stop offset="82%" stopColor="#8d5f13" />
-            <stop offset="100%" stopColor="#5f3f0c" />
-          </radialGradient>
-          <radialGradient id="hd-bounce" cx="62%" cy="88%" r="46%">
-            <stop offset="0%" stopColor="#ffd98a" stopOpacity="0.85" />
-            <stop offset="100%" stopColor="#ffd98a" stopOpacity="0" />
-          </radialGradient>
-          <radialGradient id="hd-key" cx="34%" cy="24%" r="24%">
+          <linearGradient id="hd-glass" x1="0" y1="0" x2="0.6" y2="1">
             <stop offset="0%" stopColor="#ffffff" stopOpacity="0.95" />
-            <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
-          </radialGradient>
-          <linearGradient id="hd-band" x1="0" y1="1" x2="0" y2="0">
-            <stop offset="0%" stopColor="#ffffff" stopOpacity="0" />
-            <stop offset="55%" stopColor="#ffffff" stopOpacity="0.42" />
-            <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
+            <stop offset="45%" stopColor="#dfe6f1" stopOpacity="0.85" />
+            <stop offset="100%" stopColor="#a9b8cd" stopOpacity="0.9" />
           </linearGradient>
-          <clipPath id="hd-clip">
-            <path d="M160 22c46 0 78 22 96 56 20 38 30 74 12 112-19 40-62 62-108 62-44 0-84-20-102-58-18-38-8-78 13-115C89 44 116 22 160 22Z" />
-          </clipPath>
         </defs>
-
-        <g clipPath="url(#hd-clip)">
-          <rect width="320" height="320" fill="url(#hd-body)" />
-          <rect width="320" height="320" fill="url(#hd-bounce)" />
-          <rect y="150" width="320" height="120" fill="url(#hd-band)" />
-          <ellipse cx="112" cy="82" rx="42" ry="30" fill="url(#hd-key)" />
-        </g>
+        {shards.map((shard, index) => (
+          <polygon
+            key={index}
+            points={shard.points}
+            fill="url(#hd-glass)"
+            fillOpacity={shard.opacity}
+            stroke={shard.rim ? '#cf9a28' : '#8e9fb8'}
+            strokeOpacity={shard.rim ? 0.5 : 0.35}
+            strokeWidth="0.28"
+          />
+        ))}
       </svg>
     </div>
   );

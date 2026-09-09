@@ -7,20 +7,22 @@
 }
 
 .svg {
-  width: min(30vw, 21rem);
+  width: min(40vw, 32rem);
   height: auto;
-  transform: translate(20%, 2%);
+  transform: translate(24%, 0);
 }
 
 .wash {
   position: absolute;
   inset: 0;
-  background: radial-gradient(46% 46% at 70% 46%, rgb(207 154 40 / 10%), transparent 68%);
+  background:
+    radial-gradient(44% 44% at 70% 46%, rgb(16 31 54 / 6%), transparent 68%),
+    radial-gradient(30% 30% at 78% 62%, rgb(207 154 40 / 9%), transparent 70%);
 }
 
 @media (max-width: 860px) {
   .svg {
-    width: min(56vw, 17rem);
-    transform: translate(0, 22%);
+    width: min(74vw, 22rem);
+    transform: translate(0, 16%);
   }
 }
