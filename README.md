@@ -144,8 +144,16 @@ Everything the site says lives in `src/content/`, typed against
   line in `vercel.json` / `_redirects`.
 - `useSeo` sets per-route title and meta tags at runtime. For crawler-visible
   metadata, prerender the five routes at build time or move to an SSR framework.
+- Real contact details, the office map and the five social channels now live in
+  `src/content/site.ts` and `src/content/contact.ts`. The map is a keyless
+  Google embed pinned to the studio's exact coordinates (12.9287471,
+  77.5625986) taken from its Maps listing, so both the pin and the directions
+  link land on the door rather than on a geocoded guess at the street. A styled
+  panel sits behind the iframe, so a blocked or offline map still shows
+  something deliberate.
+- Opening hours are evaluated in Asia/Kolkata rather than the reader's
+  timezone (`useOpenNow`), so a visitor in London sees Bengaluru's clock. The
+  badge re-checks every minute.
 - The contact form and newsletter validate and show success states but post
   nowhere yet. `useContactForm` takes an injected `onSubmit`, so wiring a real
   endpoint is a one-line change at the call site in `ContactForm.tsx`.
-- Contact details in `src/content/site.ts` and `src/content/contact.ts` are
-  placeholders.

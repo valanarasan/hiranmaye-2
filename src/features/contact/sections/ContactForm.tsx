@@ -1,7 +1,8 @@
 import type { FormEvent } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Button, Container, Field, Section, Text } from '@/components/primitives';
-import { challengeOptions, contactAssurances, contactPoints } from '@/content/contact';
+import { challengeOptions, contactAssurances } from '@/content/contact';
+import { site } from '@/content/site';
 import { useContactForm } from '../hooks/useContactForm';
 import styles from './ContactForm.module.css';
 
@@ -136,22 +137,20 @@ export function ContactForm() {
             )}
           </div>
 
-          <aside className={styles.aside} aria-label="Contact details">
-            {contactPoints.map((point) =>
-              'href' in point && point.href ? (
-                <div key={point.id} className={styles.point}>
-                  <span className={styles.pointLabel}>{point.label}</span>
-                  <a className={styles.pointValue} href={point.href}>
-                    {point.value}
-                  </a>
-                </div>
-              ) : (
-                <div key={point.id} className={styles.point}>
-                  <span className={styles.pointLabel}>{point.label}</span>
-                  <span className={styles.pointValue}>{point.value}</span>
-                </div>
-              ),
-            )}
+          <aside className={styles.aside} aria-label="What to expect">
+            <div className={styles.point}>
+              <span className={styles.pointLabel}>Rather talk?</span>
+              <a className={styles.pointValue} href={`tel:${site.phoneRaw}`}>
+                {site.phone}
+              </a>
+            </div>
+
+            <div className={styles.point}>
+              <span className={styles.pointLabel}>Or email</span>
+              <a className={styles.pointValue} href={`mailto:${site.email}`}>
+                {site.email}
+              </a>
+            </div>
 
             <ul className={styles.assurances}>
               {contactAssurances.map((assurance) => (

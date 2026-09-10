@@ -1,12 +1,15 @@
-import type { CtaLink, NavItem } from '@/types/content';
+import type { CtaLink, NavItem, SocialChannel } from '@/types/content';
 
 export const site = {
   name: 'HIRANMAYE DIGITAL',
   shortName: 'Hiranmaye',
-  tagline: 'Strategy × Creativity × Technology',
-  email: 'hello@hiranmayedigital.com',
-  phone: '+91 00000 00000',
-  location: 'India',
+  tagline: 'Strategy drives growth',
+  email: 'hiranmayemarketing@gmail.com',
+  phone: '+91 99006 68383',
+  /** E.164, for tel: and wa.me links. */
+  phoneRaw: '+919900668383',
+  domain: 'www.hiranmayedigital.com',
+  location: 'Bengaluru, India',
 } as const;
 
 export const primaryNav: readonly NavItem[] = [
@@ -18,6 +21,59 @@ export const primaryNav: readonly NavItem[] = [
 ];
 
 export const headerCta: CtaLink = { label: "Let's talk growth", to: '/contact' };
+
+/**
+ * Each channel says what it is actually for, so the reader can pick the one
+ * that suits the question they have rather than defaulting to whichever icon
+ * they recognise.
+ */
+export const socialChannels: readonly SocialChannel[] = [
+  {
+    id: 'whatsapp',
+    name: 'WhatsApp',
+    handle: '+91 99006 68383',
+    purpose: 'Project enquiries, quick audits and real-time answers from the team.',
+    tag: 'Fastest reply',
+    href: 'https://wa.me/919900668383',
+    cta: 'Start a chat',
+  },
+  {
+    id: 'linkedin',
+    name: 'LinkedIn',
+    handle: 'Hiranmaye Digital',
+    purpose: 'B2B growth playbooks, performance benchmarks and industry analysis.',
+    tag: 'B2B network',
+    href: 'https://www.linkedin.com/company/hiranmayedigital',
+    cta: 'Connect',
+  },
+  {
+    id: 'instagram',
+    name: 'Instagram',
+    handle: '@hiranmaye_digital',
+    purpose: 'Daily growth insights, behind the scenes and campaign breakdowns.',
+    tag: 'Visual stories',
+    href: 'https://www.instagram.com/hiranmaye_digital',
+    cta: 'Follow',
+  },
+  {
+    id: 'youtube',
+    name: 'YouTube',
+    handle: '@Hiranmaye_Digital',
+    purpose: 'In-depth case studies, marketing tutorials and video breakdowns.',
+    tag: 'Video guides',
+    href: 'https://www.youtube.com/@Hiranmaye_Digital',
+    cta: 'Subscribe',
+  },
+  {
+    id: 'facebook',
+    name: 'Facebook',
+    handle: 'hiranmayedigital',
+    purpose: 'Community updates, client wins and digital marketing news.',
+    tag: 'Community',
+    href: 'https://www.facebook.com/hiranmayedigital',
+    cta: 'Follow',
+  },
+];
 
 export const footerColumns = [
   {

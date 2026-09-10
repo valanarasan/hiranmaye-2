@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
 import { Container } from '@/components/primitives';
-import { footerColumns, site } from '@/content/site';
+import { SocialIcon } from '@/components/icons';
+import type { SocialIconName } from '@/components/icons';
+import { footerColumns, site, socialChannels } from '@/content/site';
+import { office } from '@/content/contact';
 import { Logo } from './Logo';
 import styles from './Footer.module.css';
 
@@ -11,10 +14,27 @@ export function Footer() {
     <footer className={styles.footer}>
       <Container>
         <div className={styles.top}>
-          <div>
+          <div className={styles.brandCol}>
             <p className={styles.statement}>
               Impressions are not growth. What moves the business forward is.
             </p>
+
+            <ul className={styles.social} aria-label="Hiranmaye Digital elsewhere">
+              {socialChannels.map((channel) => (
+                <li key={channel.id}>
+                  <a
+                    className={styles.socialLink}
+                    href={channel.href}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    aria-label={`${channel.name} — ${channel.handle}`}
+                    title={channel.name}
+                  >
+                    <SocialIcon name={channel.id as SocialIconName} className={styles.socialIcon} />
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {footerColumns.map((column) => (
@@ -31,14 +51,44 @@ export function Footer() {
               </ul>
             </nav>
           ))}
+
+          <div>
+            <p className={styles.colTitle}>Studio</p>
+            <address className={styles.address}>
+              {office.street}
+              <br />
+              {office.locality}
+              <br />
+              {office.city} {office.postcode}
+            </address>
+            <ul className={styles.colList}>
+              <li>
+                <a className={styles.colLink} href={`tel:${site.phoneRaw}`}>
+                  {site.phone}
+                </a>
+              </li>
+              <li>
+                <a className={styles.colLink} href={`mailto:${site.email}`}>
+                  {site.email}
+                </a>
+              </li>
+              <li>
+                <a
+                  className={styles.colLink}
+                  href={office.mapsUrl}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  Find us on Google Maps
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
 
         <div className={styles.bottom}>
           <Logo onDark />
-          <div className={styles.contactRow}>
-            <a href={`mailto:${site.email}`}>{site.email}</a>
-            <span>{site.location}</span>
-          </div>
+          <span className={styles.domain}>{site.domain}</span>
           <span>
             © {year} {site.name}
           </span>

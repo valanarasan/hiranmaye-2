@@ -1,5 +1,5 @@
 import { PageHero } from '@/features/about/sections';
-import { ContactForm } from '@/features/contact/sections';
+import { ContactForm, OfficeMap, SocialChannels } from '@/features/contact/sections';
 import { contactHero } from '@/content/contact';
 import { seo } from '@/content/seo';
 import { useSeo } from '@/hooks';
@@ -16,6 +16,8 @@ export default function ContactPage() {
         titleId="contact-title"
       />
       <ContactForm />
+      <OfficeMap />
+      <SocialChannels />
     </>
   );
 }

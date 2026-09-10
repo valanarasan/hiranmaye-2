@@ -1,0 +1,246 @@
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: var(--space-6);
+  align-items: stretch;
+  margin-top: var(--space-7);
+}
+
+/* --- the map ------------------------------------------------------------ */
+
+.mapFrame {
+  position: relative;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--surface-2);
+  min-height: 26rem;
+  display: grid;
+}
+
+/* Sits under the iframe, so a blocked or offline map still shows something
+   deliberate rather than a broken-image glyph on grey. */
+.mapFallback {
+  grid-area: 1 / 1;
+  display: grid;
+  place-content: center;
+  gap: var(--space-2);
+  justify-items: center;
+  text-align: center;
+  padding: var(--space-6);
+  background:
+    radial-gradient(60% 60% at 50% 40%, rgb(207 154 40 / 8%), transparent 70%),
+    var(--surface-2);
+  color: var(--muted);
+  font-size: var(--step--1);
+}
+
+.mapFallback strong {
+  font-family: var(--font-serif);
+  font-size: var(--step-2);
+  font-weight: 400;
+  color: var(--ink);
+}
+
+.mapFrame iframe { grid-area: 1 / 1; }
+
+.mapFrame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 26rem;
+  border: 0;
+  /* Google's tiles are a warm grey; a touch of desaturation settles them
+     against the navy and gold without making the map hard to read. */
+  filter: saturate(0.82) contrast(1.02);
+}
+
+.mapNote {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: rgb(255 255 255 / 92%);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid var(--hairline);
+  font-size: var(--step--1);
+  color: var(--muted);
+}
+
+.mapNote strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* --- the details panel --------------------------------------------------- */
+
+.panel {
+  display: grid;
+  align-content: start;
+  gap: var(--space-5);
+  padding: var(--space-6);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+
+.panelHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--step--2);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--faint);
+  flex: none;
+}
+
+.dotOpen { background: #2f8f5b; }
+
+.address {
+  font-style: normal;
+  font-size: var(--step-0);
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: 34ch;
+}
+
+.landmark {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-4);
+  border-left: 2px solid var(--accent);
+  background: var(--accent-soft);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.landmarkLabel {
+  font-size: var(--step--2);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+}
+
+.rows {
+  display: grid;
+  gap: 0;
+  margin: 0;
+}
+
+.row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--hairline);
+  font-size: var(--step--1);
+}
+
+.row:first-child { border-top: 0; }
+
+.rowLabel { color: var(--muted); }
+
+.rowValue {
+  color: var(--ink);
+  font-weight: 500;
+  text-align: right;
+}
+
+.rowLink {
+  color: var(--ink);
+  font-weight: 500;
+  border-bottom: 1px solid var(--hairline-strong);
+  transition: color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+  word-break: break-word;
+  text-align: right;
+}
+
+.rowLink:hover {
+  color: var(--accent-deep);
+  border-bottom-color: var(--accent);
+}
+
+/* --- hours --------------------------------------------------------------- */
+
+.hours {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--hairline);
+}
+
+.hoursTitle {
+  font-size: var(--step--2);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: var(--space-1);
+}
+
+.hoursStatus {
+  font-size: var(--step--1);
+  color: var(--muted);
+  margin-bottom: var(--space-2);
+}
+
+.hoursStatusOpen { color: #2f8f5b; }
+
+.hoursRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  font-size: var(--step--1);
+  color: var(--muted);
+}
+
+.hoursToday {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.hoursTime { font-variant-numeric: tabular-nums; }
+
+.closed { color: var(--faint); }
+
+.actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+  padding-top: var(--space-2);
+}
+
+@media (max-width: 1000px) {
+  .layout { grid-template-columns: 1fr; }
+  .mapFrame, .mapFrame iframe { min-height: 20rem; }
+}
+
+@media (max-width: 460px) {
+  .actions { grid-template-columns: 1fr; }
+  .row { flex-direction: column; align-items: flex-start; gap: var(--space-1); }
+  .rowValue, .rowLink { text-align: left; }
+}

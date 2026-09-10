@@ -98,3 +98,48 @@ export interface SeoMeta {
   readonly title: string;
   readonly description: string;
 }
+
+export interface SocialChannel {
+  readonly id: string;
+  /** Platform name as people know it. */
+  readonly name: string;
+  /** The handle or number shown under the name. */
+  readonly handle: string;
+  /** What this channel is actually for. */
+  readonly purpose: string;
+  /** Short label describing the kind of content. */
+  readonly tag: string;
+  readonly href: string;
+  readonly cta: string;
+}
+
+export interface OpeningHours {
+  readonly id: string;
+  readonly label: string;
+  /** Days this row covers, 0 = Sunday. */
+  readonly days: readonly number[];
+  /** Minutes from midnight, IST. Omit both for a closed day. */
+  readonly opens?: number;
+  readonly closes?: number;
+  readonly display: string;
+}
+
+export interface OfficeLocation {
+  readonly name: string;
+  readonly street: string;
+  readonly landmark: string;
+  readonly locality: string;
+  readonly city: string;
+  readonly state: string;
+  readonly postcode: string;
+  readonly country: string;
+  readonly latitude: number;
+  readonly longitude: number;
+  /** Canonical Google Maps listing. */
+  readonly mapsUrl: string;
+  /** Turn-by-turn directions to the exact pin. */
+  readonly directionsUrl: string;
+  /** Keyless embed of the same coordinates. */
+  readonly embedUrl: string;
+  readonly consultation: string;
+}
