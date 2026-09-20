@@ -1,35 +1,34 @@
-import { useCallback, useMemo } from 'react';
+import { useCallback } from 'react';
 import type { FormEvent } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Button, Container, Field, Section, Text } from '@/components/primitives';
 import { challengeOptions, contactAssurances } from '@/content/contact';
 import { site } from '@/content/site';
-import { createLeadPayload, getLeadTransport } from '@/services/leads';
 import type { ContactValues } from '../hooks/useContactForm';
 import { useContactForm } from '../hooks/useContactForm';
+import { composeEnquiry, whatsappLink } from '../lib/whatsapp';
 import styles from './ContactForm.module.css';
 
 export function ContactForm() {
   const [searchParams] = useSearchParams();
 
-  // The presenter resolves the transport once and hands the hook a plain
-  // function, so the hook stays ignorant of Apps Script, fetch and env vars.
-  const transport = useMemo(() => getLeadTransport(), []);
-  const deliver = useCallback(
-    async (fields: ContactValues) => {
-      await transport.send(createLeadPayload(fields, { source: 'contact-page' }));
-    },
-    [transport],
-  );
+  // Hands a valid enquiry to WhatsApp with the message pre-written. If the
+  // browser blocks the new tab, fall back to navigating this one there, so the
+  // visitor always lands in the chat.
+  const openWhatsApp = useCallback((fields: ContactValues) => {
+    const url = whatsappLink(site.phoneRaw, composeEnquiry(fields));
+    const opened = window.open(url, '_blank', 'noopener,noreferrer');
+    if (!opened) window.location.assign(url);
+  }, []);
 
-  const { values, errors, formError, status, setField, submit, honeypotProps } = useContactForm({
-    onSubmit: deliver,
+  const { values, errors, status, setField, submit, edit } = useContactForm({
+    onSubmit: openWhatsApp,
     initialChallenge: searchParams.get('challenge') ?? '',
   });
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    void submit();
+    submit();
   };
 
   return (
@@ -46,12 +45,26 @@ export function ContactForm() {
                 <span className={styles.successMark} aria-hidden="true">
                   ✓
                 </span>
-                <Text variant="h3">Thank you — that has reached us.</Text>
+                <Text variant="h3">Your message is ready in WhatsApp.</Text>
                 <Text tone="muted">
-                  We read every enquiry properly rather than routing it into a funnel. Expect a
-                  reply within one working day, from a person who has actually looked at your
-                  business.
+                  Press send there and it reaches us directly. We read every enquiry properly
+                  and reply within one working day, from a person who has actually looked at
+                  your business.
                 </Text>
+                <div className={styles.successActions}>
+                  <Button
+                    as="a"
+                    href={whatsappLink(site.phoneRaw, composeEnquiry(values))}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    withArrow
+                  >
+                    WhatsApp didn't open? Continue here
+                  </Button>
+                  <Button type="button" variant="link" onClick={edit}>
+                    Edit my message
+                  </Button>
+                </div>
               </div>
             ) : (
               <form className={styles.form} onSubmit={handleSubmit} noValidate>
@@ -91,7 +104,7 @@ export function ContactForm() {
                         type="email"
                         inputMode="email"
                         autoComplete="email"
-                        placeholder="you@company.com"
+                        placeholder="Optional"
                         value={values.email}
                         onChange={(event) => setField('email', event.target.value)}
                       />
@@ -142,25 +155,13 @@ export function ContactForm() {
                   )}
                 </Field>
 
-                <div className={styles.decoy} aria-hidden="true">
-                  <label htmlFor="company-website">
-                    Leave this field empty
-                    <input {...honeypotProps} id="company-website" type="text" />
-                  </label>
-                </div>
-
-                {formError ? (
-                  <p className={styles.formError} role="alert">
-                    {formError}{' '}
-                    <a href={`mailto:${site.email}`}>{site.email}</a>
-                  </p>
-                ) : null}
-
                 <div className={styles.actions}>
-                  <Button type="submit" size="lg" withArrow disabled={status === 'submitting'}>
-                    {status === 'submitting' ? 'Sending…' : 'Send the brief'}
+                  <Button type="submit" size="lg" withArrow>
+                    Continue on WhatsApp
                   </Button>
-                  <span className={styles.note}>No obligation. No sales sequence.</span>
+                  <span className={styles.note}>
+                    Opens WhatsApp with your message ready — you press send.
+                  </span>
                 </div>
               </form>
             )}
