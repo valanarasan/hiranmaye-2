@@ -1,14 +1,29 @@
+import { useCallback, useMemo } from 'react';
 import type { FormEvent } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Button, Container, Field, Section, Text } from '@/components/primitives';
 import { challengeOptions, contactAssurances } from '@/content/contact';
 import { site } from '@/content/site';
+import { createLeadPayload, getLeadTransport } from '@/services/leads';
+import type { ContactValues } from '../hooks/useContactForm';
 import { useContactForm } from '../hooks/useContactForm';
 import styles from './ContactForm.module.css';
 
 export function ContactForm() {
   const [searchParams] = useSearchParams();
-  const { values, errors, status, setField, submit } = useContactForm({
+
+  // The presenter resolves the transport once and hands the hook a plain
+  // function, so the hook stays ignorant of Apps Script, fetch and env vars.
+  const transport = useMemo(() => getLeadTransport(), []);
+  const deliver = useCallback(
+    async (fields: ContactValues) => {
+      await transport.send(createLeadPayload(fields, { source: 'contact-page' }));
+    },
+    [transport],
+  );
+
+  const { values, errors, formError, status, setField, submit, honeypotProps } = useContactForm({
+    onSubmit: deliver,
     initialChallenge: searchParams.get('challenge') ?? '',
   });
 
@@ -126,6 +141,20 @@ export function ContactForm() {
                     />
                   )}
                 </Field>
+
+                <div className={styles.decoy} aria-hidden="true">
+                  <label htmlFor="company-website">
+                    Leave this field empty
+                    <input {...honeypotProps} id="company-website" type="text" />
+                  </label>
+                </div>
+
+                {formError ? (
+                  <p className={styles.formError} role="alert">
+                    {formError}{' '}
+                    <a href={`mailto:${site.email}`}>{site.email}</a>
+                  </p>
+                ) : null}
 
                 <div className={styles.actions}>
                   <Button type="submit" size="lg" withArrow disabled={status === 'submitting'}>

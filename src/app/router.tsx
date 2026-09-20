@@ -22,4 +22,7 @@ export const router = createBrowserRouter([
       { path: '*', element: <NotFoundPage /> },
     ],
   },
-]);
+], {
+  // Mirrors Vite's `base`, so routes resolve under /<repo>/ on GitHub Pages.
+  basename: import.meta.env.BASE_URL.replace(/\/$/, '') || '/',
+});

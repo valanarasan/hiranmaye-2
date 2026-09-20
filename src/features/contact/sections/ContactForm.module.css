@@ -105,3 +105,28 @@ a.pointValue:hover { color: var(--accent-deep); }
 @media (max-width: 560px) {
   .pair { grid-template-columns: 1fr; }
 }
+
+/**
+ * The decoy field. Moved off-screen rather than display:none — some bots skip
+ * anything that is not rendered, and every one of them fills this in.
+ */
+.decoy {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.formError {
+  padding: var(--space-3) var(--space-4);
+  border-left: 2px solid var(--accent);
+  background: var(--accent-soft);
+  font-size: var(--step--1);
+  color: var(--ink);
+}
+
+.formError a {
+  color: var(--accent-deep);
+  border-bottom: 1px solid currentColor;
+}
