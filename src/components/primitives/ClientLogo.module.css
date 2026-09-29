@@ -1,33 +1,15 @@
 .logo {
-  /* A fixed box keeps a wide wordmark and a square emblem on the same line. */
+  /* A fixed box keeps a wide wordmark and a square emblem on the same line,
+     each scaled to fit rather than dictating the row's height. Client marks
+     are shown in their own colours, exactly as supplied. */
   width: 100%;
   max-width: 11rem;
   height: 3.25rem;
   object-fit: contain;
   object-position: center;
-
-  /* Client marks carry their own colours, which would fight a palette that
-     spends colour once per viewport. They rest desaturated and come back to
-     full colour on hover, so the wall reads as one texture until you look. */
-  filter: grayscale(1);
-  opacity: 0.68;
-  transition:
-    filter 300ms var(--ease),
-    opacity 300ms var(--ease);
-}
-
-.logo:hover {
-  filter: grayscale(0);
-  opacity: 1;
 }
 
 .sm {
   max-width: 8.5rem;
   height: 2.5rem;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .logo {
-    transition: none;
-  }
 }
