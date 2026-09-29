@@ -38,7 +38,8 @@
 }
 
 .subcopy {
-  max-width: 56ch;
+  font-size: var(--step-0);
+  max-width: 62ch;
   margin-bottom: var(--space-6);
 }
 
