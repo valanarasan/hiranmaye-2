@@ -33,6 +33,7 @@
   margin-inline: calc(var(--gutter) * -0.5);
 }
 
+.row.lit::before,
 .row:hover::before { opacity: 1; }
 
 .num {
@@ -50,6 +51,7 @@
   transition: color var(--dur-fast) var(--ease-out);
 }
 
+.row.lit .label,
 .row:hover .label { color: var(--accent-deep); }
 
 .detail {
@@ -85,6 +87,7 @@
   transition: background var(--dur-fast) var(--ease-out);
 }
 
+.row.lit .cap::before,
 .row:hover .cap::before { background: var(--accent); }
 
 .chevron {

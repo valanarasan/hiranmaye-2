@@ -1,9 +1,13 @@
 import { Link } from 'react-router-dom';
 import { Button, Container, Reveal, Section, SectionHeader } from '@/components/primitives';
 import { pillars } from '@/content/home';
+import { useActiveStep } from '@/hooks';
+import { cx } from '@/lib/cx';
 import styles from './Capabilities.module.css';
 
 export function Capabilities() {
+  const { ref, active } = useActiveStep<HTMLDivElement>(pillars.length);
+
   return (
     <Section tone="surface" aria-labelledby="capabilities-title">
       <Container>
@@ -18,11 +22,11 @@ export function Capabilities() {
           </Button>
         </div>
 
-        <div className={styles.list}>
+        <div className={styles.list} ref={ref}>
           {pillars.map((pillar, index) => (
             <Reveal key={pillar.id} delay={index * 55}>
               <Link to={pillar.to}>
-                <div className={styles.row}>
+                <div className={cx(styles.row, index <= active && styles.lit)}>
                   <span className={styles.num}>{String(index + 1).padStart(2, '0')}</span>
                   <span className={styles.label}>{pillar.label}</span>
 

@@ -3,13 +3,13 @@
      each scaled to fit rather than dictating the row's height. Client marks
      are shown in their own colours, exactly as supplied. */
   width: 100%;
-  max-width: 11rem;
-  height: 3.25rem;
+  max-width: 15rem;
+  height: 4.75rem;
   object-fit: contain;
   object-position: center;
 }
 
 .sm {
-  max-width: 8.5rem;
-  height: 2.5rem;
+  max-width: 10.5rem;
+  height: 3.25rem;
 }

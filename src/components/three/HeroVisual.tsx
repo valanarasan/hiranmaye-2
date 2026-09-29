@@ -37,7 +37,6 @@ export function HeroVisual() {
         <SceneFallback />
       )}
       <div className={styles.veil} />
-      <div className={styles.base} />
     </div>
   );
 }

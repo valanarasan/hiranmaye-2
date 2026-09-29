@@ -1,6 +1,7 @@
 export { useReducedMotion } from './useReducedMotion';
 export { useMediaQuery } from './useMediaQuery';
 export { useWebGLSupport } from './useWebGLSupport';
+export { useActiveStep } from './useActiveStep';
 export { useInView } from './useInView';
 export { useScrollProgress } from './useScrollProgress';
 export { usePointer } from './usePointer';

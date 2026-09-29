@@ -50,12 +50,17 @@
   transition: width var(--dur-slow) var(--ease-out);
 }
 
+/* The rule fills as the reader arrives at each step, and stays filled: an
+   ordered list should read as progress, not as a single moving spotlight.
+   Hover still works, for anyone who skips straight to a column. */
+.step.lit::before,
 .step:hover::before { width: 100%; }
 
 .index {
   font-size: var(--step--2);
   letter-spacing: 0.18em;
-  color: var(--accent);
+  color: var(--on-ink-muted);
+  transition: color var(--dur-mid) var(--ease-out);
   font-variant-numeric: tabular-nums;
   line-height: 1;
   align-self: end;
@@ -116,3 +121,6 @@
 
   .step { border-right: 0; }
 }
+
+.step.lit .index,
+.step:hover .index { color: var(--accent); }
