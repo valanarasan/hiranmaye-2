@@ -10,7 +10,20 @@
   gap: var(--space-5) var(--space-7);
   padding-top: var(--space-6);
   border-top: 1px solid var(--hairline);
+  position: relative;
 }
+
+.member::before {
+  content: '';
+  position: absolute;
+  inset: -1px auto auto 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width var(--dur-slow) var(--ease-out);
+}
+
+.member.lit::before { width: 100%; }
 
 .head {
   display: grid;

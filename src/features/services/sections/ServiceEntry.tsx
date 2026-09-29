@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Button, Reveal } from '@/components/primitives';
 import type { Service } from '@/types/content';
+import { useActiveStep } from '@/hooks';
+import { cx } from '@/lib/cx';
 import styles from './ServiceEntry.module.css';
 
 export interface ServiceEntryProps {
@@ -8,6 +10,8 @@ export interface ServiceEntryProps {
 }
 
 export function ServiceEntry({ service }: ServiceEntryProps) {
+  const { ref, active } = useActiveStep<HTMLDivElement>(service.facets?.length ?? 0);
+
   return (
     <Reveal as="article" id={service.id} className={styles.entry}>
       <div className={styles.top}>
@@ -39,9 +43,12 @@ export function ServiceEntry({ service }: ServiceEntryProps) {
       </div>
 
       {service.facets?.length ? (
-        <div className={styles.facets}>
-          {service.facets.map((facet) => (
-            <div key={facet.id} className={styles.facet}>
+        <div className={styles.facets} ref={ref}>
+          {service.facets.map((facet, index) => (
+            <div
+              key={facet.id}
+              className={cx(styles.facet, index <= active && styles.lit)}
+            >
               <span className={styles.facetTitle}>{facet.title}</span>
               <span className={styles.facetPromise}>{facet.promise}</span>
               <p className={styles.facetBody}>{facet.body}</p>

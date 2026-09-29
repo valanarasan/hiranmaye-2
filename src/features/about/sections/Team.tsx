@@ -1,8 +1,12 @@
 import { Container, Section, SectionHeader, Text } from '@/components/primitives';
 import { team, teamSection } from '@/content/team';
+import { useActiveStep } from '@/hooks';
+import { cx } from '@/lib/cx';
 import styles from './Team.module.css';
 
 export function Team() {
+  const { ref, active } = useActiveStep<HTMLDivElement>(team.length);
+
   return (
     <Section id="team" tone="surface" aria-labelledby="team-title">
       <Container>
@@ -13,9 +17,12 @@ export function Team() {
           titleId="team-title"
         />
 
-        <div className={styles.grid}>
-          {team.map((member) => (
-            <article key={member.id} className={styles.member}>
+        <div className={styles.grid} ref={ref}>
+          {team.map((member, index) => (
+            <article
+              key={member.id}
+              className={cx(styles.member, index <= active && styles.lit)}
+            >
               <header className={styles.head}>
                 <Text variant="h3" as="h3">
                   {member.name}

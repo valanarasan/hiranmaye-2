@@ -1,5 +1,7 @@
 import { Chip, Text } from '@/components/primitives';
 import type { Post } from '@/types/content';
+import { useActiveStep } from '@/hooks';
+import { cx } from '@/lib/cx';
 import styles from './PostGrid.module.css';
 
 export interface PostGridProps {
@@ -16,6 +18,8 @@ export function PostGrid({
   activeCategory,
   onCategoryChange,
 }: PostGridProps) {
+  const { ref, active } = useActiveStep<HTMLDivElement>(posts.length);
+
   return (
     <div>
       <div className={styles.filters} role="group" aria-label="Filter articles by category">
@@ -35,9 +39,9 @@ export function PostGrid({
       {posts.length === 0 ? (
         <p className={styles.empty}>Nothing filed under this category yet. More is on the way.</p>
       ) : (
-        <div className={styles.grid}>
-          {posts.map((post) => (
-            <article key={post.id} className={styles.card}>
+        <div className={styles.grid} ref={ref}>
+          {posts.map((post, index) => (
+            <article key={post.id} className={cx(styles.card, index <= active && styles.lit)}>
               <div className={styles.cardMeta}>
                 <span className={styles.cardCategory}>{post.category}</span>
                 <span>{post.readTime}</span>

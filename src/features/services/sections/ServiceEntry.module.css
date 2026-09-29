@@ -82,7 +82,21 @@
   display: grid;
   gap: var(--space-2);
   align-content: start;
+  position: relative;
+  padding-top: var(--space-4);
 }
+
+.facet::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width var(--dur-slow) var(--ease-out);
+}
+
+.facet.lit::before { width: 100%; }
 
 .facetTitle {
   font-size: var(--step-1);

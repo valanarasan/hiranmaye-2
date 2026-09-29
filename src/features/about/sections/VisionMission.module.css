@@ -7,7 +7,22 @@
 .card {
   padding: var(--space-7) var(--space-6) var(--space-7) 0;
   border-right: 1px solid var(--hairline);
+  position: relative;
 }
+
+/* The same gold rule the process steps use, so one gesture means the same
+   thing everywhere on the site: you have arrived at this piece. */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: -1px auto auto 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width var(--dur-slow) var(--ease-out);
+}
+
+.card.lit::before { width: 100%; }
 
 .card:last-child {
   border-right: 0;
