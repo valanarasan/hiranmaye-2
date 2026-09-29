@@ -1,65 +1,67 @@
-import { useMemo } from 'react';
+import { heroScene } from '@/content/scene';
 import styles from './SceneFallback.module.css';
-
-interface Shard {
-  points: string;
-  opacity: number;
-  rim: boolean;
-}
 
 /**
  * The static face of the hero: shown while the WebGL chunk loads, and shown
  * permanently on reduced-motion, low-memory or no-WebGL devices. It holds the
- * same idea at its first beat — scattered glass, not yet resolved — using
- * gradients and polygons only.
+ * same idea at rest — a hoarding with cards strung beneath it — in flat SVG,
+ * so the first frame is never empty and never animates.
  */
 export function SceneFallback() {
-  const shards = useMemo<Shard[]>(() => {
-    let seed = 20260908;
-    const rand = () => {
-      seed = (seed * 1664525 + 1013904223) % 4294967296;
-      return seed / 4294967296;
-    };
-
-    return Array.from({ length: 26 }, () => {
-      const cx = 22 + rand() * 60;
-      const cy = 18 + rand() * 64;
-      const scale = 4 + rand() * 7;
-      const sides = 5;
-      const rotation = rand() * Math.PI;
-
-      const points = Array.from({ length: sides }, (_, i) => {
-        const a = rotation + (i / sides) * Math.PI * 2;
-        const r = scale * (0.55 + rand() * 0.55);
-        return `${(cx + Math.cos(a) * r * 0.62).toFixed(2)},${(cy + Math.sin(a) * r).toFixed(2)}`;
-      }).join(' ');
-
-      return { points, opacity: 0.1 + rand() * 0.3, rim: rand() > 0.62 };
-    });
-  }, []);
+  const { colors, cards } = heroScene;
 
   return (
     <div className={styles.fallback} aria-hidden="true">
       <div className={styles.wash} />
       <svg className={styles.svg} viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
-        <defs>
-          <linearGradient id="hd-glass" x1="0" y1="0" x2="0.6" y2="1">
-            <stop offset="0%" stopColor="#ffffff" stopOpacity="0.95" />
-            <stop offset="45%" stopColor="#dfe6f1" stopOpacity="0.85" />
-            <stop offset="100%" stopColor="#a9b8cd" stopOpacity="0.9" />
-          </linearGradient>
-        </defs>
-        {shards.map((shard, index) => (
-          <polygon
-            key={index}
-            points={shard.points}
-            fill="url(#hd-glass)"
-            fillOpacity={shard.opacity}
-            stroke={shard.rim ? '#cf9a28' : '#8e9fb8'}
-            strokeOpacity={shard.rim ? 0.5 : 0.35}
-            strokeWidth="0.28"
-          />
-        ))}
+        {/* Frame */}
+        <rect x="18" y="12" width="64" height="2" fill={colors.ink} />
+        <rect x="24" y="14" width="1.6" height="62" fill={colors.ink} />
+        <rect x="74.4" y="14" width="1.6" height="62" fill={colors.ink} />
+
+        {/* Poster */}
+        <rect
+          x="20"
+          y="15"
+          width="60"
+          height="34"
+          fill="#ffffff"
+          stroke={colors.hairline}
+          strokeWidth="0.7"
+        />
+        <rect x="25" y="23" width="9" height="0.8" fill={colors.accent} />
+        <rect x="25" y="28" width="34" height="2.4" rx="0.4" fill={colors.ink} opacity="0.88" />
+        <rect x="25" y="33" width="44" height="2.4" rx="0.4" fill={colors.ink} opacity="0.88" />
+        <rect x="25" y="39" width="30" height="2.4" rx="0.4" fill={colors.accent} opacity="0.85" />
+
+        {/* Lower rail and the cards hanging from it */}
+        <rect x="18" y="50" width="64" height="1.4" fill={colors.ink} />
+        {cards.map((card, index) => {
+          const x = 23 + index * 9.4;
+          const drop = 4 + (index % 3) * 1.6;
+          return (
+            <g key={card.id}>
+              <rect x={x + 3.4} y="51.4" width="0.35" height={drop} fill={colors.hairline} />
+              <rect
+                x={x}
+                y={51.4 + drop}
+                width="7"
+                height="4.4"
+                fill={card.accent ? colors.ink : '#ffffff'}
+                stroke={card.accent ? colors.accent : colors.hairline}
+                strokeWidth="0.45"
+              />
+              <rect
+                x={x + 1}
+                y={52.6 + drop}
+                width="2.2"
+                height="0.4"
+                fill={colors.accent}
+                opacity={card.accent ? 1 : 0.8}
+              />
+            </g>
+          );
+        })}
       </svg>
     </div>
   );
