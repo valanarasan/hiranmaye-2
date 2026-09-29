@@ -110,3 +110,35 @@
   .block { grid-template-columns: 1fr; gap: var(--space-2); }
   .facets { grid-template-columns: 1fr; }
 }
+
+/* On a wide screen the entry splits: the title and its promise hold the left
+   column, the detail sits beside them. Below this width the same content
+   stacks, which is why the rule above stays untouched. */
+@media (min-width: 1360px) {
+  .entry {
+    display: grid;
+    grid-template-columns: minmax(0, 26rem) minmax(0, 1fr);
+    column-gap: var(--space-8);
+    align-items: start;
+  }
+
+  .top,
+  .promise {
+    grid-column: 1;
+  }
+
+  .promise { margin-bottom: 0; }
+
+  .blocks,
+  .facets,
+  .closer,
+  .cta {
+    grid-column: 2;
+  }
+
+  /* The button is inline-flex, so in a grid cell it would stretch to the
+     column and drag its label away from the copy it belongs to. */
+  .cta { justify-self: start; }
+
+  .facets { margin-top: var(--space-5); }
+}

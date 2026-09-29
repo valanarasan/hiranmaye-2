@@ -56,10 +56,13 @@
   --space-10: 8rem;
   --space-11: 11rem;
 
-  /* Layout */
-  --container: 78rem;
+  /* Layout
+     The page runs the full width of the screen; the gutter is what keeps it
+     off the edge. Running text is capped in `ch` by the blocks that hold it,
+     so a wide viewport buys more columns rather than longer lines. */
+  --container: 100%;
   --container-narrow: 52rem;
-  --gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --gutter: clamp(1.25rem, 4vw, 5rem);
   --header-h: 4.75rem;
 
   /* Radius */
