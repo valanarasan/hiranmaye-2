@@ -1,4 +1,4 @@
-import { PageHero, Story, Thinking, VisionMission, WhyUs } from '@/features/about/sections';
+import { Clients, PageHero, Story, Team, Thinking, VisionMission, WhyUs } from '@/features/about/sections';
 import { CtaBand } from '@/features/home/sections';
 import { aboutHero } from '@/content/about';
 import { seo } from '@/content/seo';
@@ -19,6 +19,8 @@ export default function AboutPage() {
       <VisionMission />
       <Story />
       <WhyUs />
+      <Team />
+      <Clients />
       <CtaBand
         title="Ambition deserves a partner that starts with the business."
         primaryLabel="Talk to us"

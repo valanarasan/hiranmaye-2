@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
-import { screen } from '@testing-library/react';
+import { screen, within } from '@testing-library/react';
 import { seo } from '@/content/seo';
+import { clients } from '@/content/clients';
 import { trust } from '@/content/home';
 import { renderWithRouter } from '@/test/utils';
 import HomePage from './HomePage';
@@ -30,12 +31,25 @@ describe('HomePage', () => {
 
   it.each([
     ['the trust strip', () => screen.getByRole('region', { name: 'Who we work with' })],
+    ['the client strip', () => screen.getByRole('region', { name: 'Trusted by' })],
     ['who we are', () => screen.getByRole('heading', { level: 2, name: /fragmentation problem/i })],
     ['the capabilities', () => screen.getByRole('heading', { level: 2, name: 'One growth partner. Multiple growth levers.' })],
     ['the process', () => screen.getByRole('heading', { level: 2, name: /we know what/i })],
   ])('composes %s section', (_name, find) => {
     renderWithRouter(<HomePage />);
     expect(find()).toBeInTheDocument();
+  });
+
+  it('places the client strip directly under the trust strip', () => {
+    renderWithRouter(<HomePage />);
+
+    const trustStrip = screen.getByRole('region', { name: 'Who we work with' });
+    const clientStrip = screen.getByRole('region', { name: 'Trusted by' });
+
+    expect(trustStrip.compareDocumentPosition(clientStrip)).toBe(
+      Node.DOCUMENT_POSITION_FOLLOWING,
+    );
+    expect(within(clientStrip).getAllByRole('img')).toHaveLength(clients.length);
   });
 
   it('shows the trust headline the strip is given', () => {

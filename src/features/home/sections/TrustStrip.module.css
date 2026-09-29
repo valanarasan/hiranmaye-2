@@ -5,6 +5,12 @@
   background: var(--bg);
 }
 
+.eyebrow {
+  display: block;
+  text-align: center;
+  margin-bottom: var(--space-3);
+}
+
 .headline {
   text-align: center;
   margin-bottom: var(--space-5);

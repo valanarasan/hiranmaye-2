@@ -1,5 +1,6 @@
 import {
   Capabilities,
+  ClientStrip,
   CtaBand,
   Hero,
   Process,
@@ -16,6 +17,7 @@ export default function HomePage() {
     <>
       <Hero />
       <TrustStrip />
+      <ClientStrip />
       <WhoWeAre />
       <Capabilities />
       <Process />

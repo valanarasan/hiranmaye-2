@@ -24,6 +24,7 @@ export const hero: HeroContent = {
 };
 
 export const trust: TrustContent = {
+  eyebrow: 'From first launch to market leader, we grow with your ambition',
   headline: 'Built for businesses at every stage of ambition.',
   stages: ['Startups', 'Scale-ups', 'SMEs', 'Enterprises'],
   industries: [

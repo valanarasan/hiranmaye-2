@@ -11,6 +11,8 @@ export type { ButtonProps, ButtonVariant, ButtonSize } from './Button';
 export { Reveal } from './Reveal';
 export type { RevealProps } from './Reveal';
 export { Chip } from './Chip';
+export { ClientLogo } from './ClientLogo';
+export type { ClientLogoProps } from './ClientLogo';
 export type { ChipProps } from './Chip';
 export { Accordion } from './Accordion';
 export { Marquee } from './Marquee';

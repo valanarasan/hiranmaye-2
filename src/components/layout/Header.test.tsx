@@ -32,7 +32,7 @@ describe('Header', () => {
     renderWithRouter(<Header />, { route: '/services' });
     const nav = screen.getByRole('navigation', { name: 'Primary' });
 
-    expect(hasClassKey(within(nav).getByRole('link', { name: 'Services' }), 'active')).toBe(true);
+    expect(hasClassKey(within(nav).getByRole('link', { name: 'Solutions' }), 'active')).toBe(true);
   });
 
   /** `end` on the home link stops "/" matching every route beneath it. */
@@ -131,7 +131,7 @@ describe('Header', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Open menu' }));
     const drawer = document.getElementById('mobile-nav')!;
 
-    await userEvent.click(within(drawer).getByRole('link', { name: 'About' }));
+    await userEvent.click(within(drawer).getByRole('link', { name: 'Inside Hiranmaye' }));
 
     expect(document.getElementById('mobile-nav')).toBeNull();
     expect(document.body.style.overflow).toBe('');

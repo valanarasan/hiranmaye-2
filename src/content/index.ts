@@ -6,3 +6,5 @@ export * from './insights';
 export * from './contact';
 export * from './seo';
 export * from './scene';
+export * from './team';
+export * from './clients';

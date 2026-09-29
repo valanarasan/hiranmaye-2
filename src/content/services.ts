@@ -29,7 +29,7 @@ export const services: readonly Service[] = [
     promise: 'Your website should be your hardest-working sales asset.',
     ctaLabel: 'Rebuild your digital storefront',
     approach:
-      'We create high-performance digital experiences that bring together brand architecture, UX strategy, responsive design, SEO readiness and conversion optimisation.',
+      'We create high-performance digital experiences that bring together brand architecture, UX strategy, responsive design, website development, analytics, technical SEO, content strategy and conversion optimisation — building platforms that are fast, discoverable, measurable and designed to turn attention into action.',
     outcome:
       "A website that doesn't merely look credible — it makes credibility commercially useful.",
   },
@@ -56,7 +56,7 @@ export const services: readonly Service[] = [
     id: 'performance',
     index: '06',
     title: 'Performance Marketing',
-    promise: 'Every rupee should have a job.',
+    promise: '"A penny saved is a penny earned." — Benjamin Franklin',
     ctaLabel: 'Make your ad spend work harder',
     approach:
       'We plan, launch and optimise performance campaigns across the funnel — focusing on audience quality, acquisition efficiency, conversion performance and return on investment.',
@@ -76,7 +76,7 @@ export const services: readonly Service[] = [
     id: 'search',
     index: '08',
     title: 'SEO • AEO • GEO',
-    promise: 'Search has changed. Your visibility strategy should too.',
+    promise: 'Timing matters. Search has changed — your visibility strategy should too.',
     ctaLabel: 'Get found everywhere it counts',
     approach:
       'Discovery no longer happens in one place. We build visibility across classic search, answer engines and generative AI platforms as a single connected system.',
@@ -131,10 +131,44 @@ export const services: readonly Service[] = [
       'From storefronts and signage to large-format print, events and on-ground brand experiences, we translate your brand identity into physical spaces that command attention.',
     closer: 'From screen to street. From attention to recall.',
   },
+  {
+    id: 'photoshoot',
+    index: '12',
+    title: 'Product Photoshoot',
+    promise: 'Images that sell before you do.',
+    ctaLabel: 'Show the product properly',
+    approach:
+      'Studio, lifestyle and detail photography, planned around your brand and built for the places your customers actually see you: your website, marketplaces, social feeds and print.',
+    closer: 'From shelf to screen. From glance to purchase.',
+  },
+  {
+    id: 'podcast',
+    index: '13',
+    title: 'Podcast & Video Production',
+    promise: 'Your story, in every format people listen to and watch.',
+    ctaLabel: 'Start publishing properly',
+    approach:
+      'From podcast episodes to YouTube videos and short-form clips, we plan, produce and publish content that builds trust, gets found in search and keeps your brand in front of the right people. One idea, recorded once, then turned into episodes, videos, clips and posts.',
+    facets: [
+      {
+        id: 'podcast-production',
+        title: 'Podcast',
+        promise: 'One conversation, many touchpoints.',
+        body: 'Concept and format, show name and cover art, recording support, editing and audio clean-up, publishing to major platforms, and video and audio clips for social.',
+      },
+      {
+        id: 'youtube',
+        title: 'YouTube',
+        promise: 'Built to be found, not just posted.',
+        body: 'Channel strategy, scripting, shooting and editing, thumbnails and titles, search optimisation, and short-form cuts for Reels and Shorts.',
+      },
+    ],
+    closer: 'From one conversation to many touchpoints. From content to conversion.',
+  },
 ];
 
 export const servicesHero = {
   eyebrow: 'Capabilities',
   headline: 'One growth partner. Multiple growth levers.',
-  lead: 'Eleven capabilities, built to operate as one system rather than eleven separate line items.',
+  lead: 'Thirteen capabilities, built to operate as one system rather than thirteen separate line items.',
 } as const;

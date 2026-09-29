@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
-import { screen } from '@testing-library/react';
+import { screen, within } from '@testing-library/react';
 import { aboutHero } from '@/content/about';
+import { clients, clientsSection } from '@/content/clients';
+import { team, teamSection } from '@/content/team';
 import { seo } from '@/content/seo';
 import { renderWithRouter } from '@/test/utils';
 import AboutPage from './AboutPage';
@@ -30,9 +32,25 @@ describe('AboutPage', () => {
     ['vision and mission', () => screen.getByRole('region', { name: 'Vision and mission' })],
     ['our story', () => screen.getByRole('region', { name: 'Our story' })],
     ['why us', () => screen.getByRole('heading', { level: 2, name: /Six things that change/i })],
+    ['the team', () => screen.getByRole('region', { name: teamSection.headline })],
+    ['the clients wall', () => screen.getByRole('region', { name: clientsSection.headline })],
   ])('composes the %s section', (_name, find) => {
     renderWithRouter(<AboutPage />);
     expect(find()).toBeInTheDocument();
+  });
+
+  it('introduces every team member after the why-us section', () => {
+    renderWithRouter(<AboutPage />);
+
+    const teamRegion = screen.getByRole('region', { name: teamSection.headline });
+    expect(within(teamRegion).getAllByRole('article')).toHaveLength(team.length);
+  });
+
+  it('shows one client mark per client in the wall', () => {
+    renderWithRouter(<AboutPage />);
+
+    const clientsRegion = screen.getByRole('region', { name: clientsSection.headline });
+    expect(within(clientsRegion).getAllByRole('img')).toHaveLength(clients.length);
   });
 
   it('closes with a call to action written for this page', () => {

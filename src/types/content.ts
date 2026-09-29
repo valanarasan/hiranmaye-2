@@ -31,6 +31,8 @@ export interface HeroContent {
 }
 
 export interface TrustContent {
+  /** Positioning line above the headline. */
+  readonly eyebrow?: string;
   readonly headline: string;
   readonly stages: readonly string[];
   readonly industries: readonly string[];
@@ -142,4 +144,23 @@ export interface OfficeLocation {
   /** Keyless embed of the same coordinates. */
   readonly embedUrl: string;
   readonly consultation: string;
+}
+
+export interface TeamMember {
+  readonly id: string;
+  readonly name: string;
+  readonly role: string;
+  /** Short line under the name, e.g. other posts held. */
+  readonly meta?: string;
+  readonly paragraphs: readonly string[];
+}
+
+export interface Client {
+  readonly id: string;
+  /** Business name, as it appears in the mark. */
+  readonly name: string;
+  /** Path under /public, resolved against the deploy base at render time. */
+  readonly logo: string;
+  /** What they do — context for a logo nobody outside their market knows. */
+  readonly sector: string;
 }

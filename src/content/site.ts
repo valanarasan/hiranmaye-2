@@ -14,10 +14,10 @@ export const site = {
 
 export const primaryNav: readonly NavItem[] = [
   { label: 'Home', to: '/' },
-  { label: 'About', to: '/about' },
-  { label: 'Services', to: '/services' },
-  { label: 'Insights', to: '/insights' },
-  { label: 'Contact', to: '/contact' },
+  { label: 'Inside Hiranmaye', to: '/about' },
+  { label: 'Solutions', to: '/services' },
+  { label: 'Resources & Insights', to: '/insights' },
+  { label: "Let's Connect", to: '/contact' },
 ];
 
 export const headerCta: CtaLink = { label: "Let's talk growth", to: '/contact' };
@@ -59,7 +59,7 @@ export const socialChannels: readonly SocialChannel[] = [
     id: 'youtube',
     name: 'YouTube',
     handle: '@Hiranmaye_Digital',
-    purpose: 'In-depth case studies, marketing tutorials and video breakdowns.',
+    purpose: 'Marketing tutorials, campaign teardowns and video explainers.',
     tag: 'Video guides',
     href: 'https://www.youtube.com/@Hiranmaye_Digital',
     cta: 'Subscribe',
@@ -68,7 +68,7 @@ export const socialChannels: readonly SocialChannel[] = [
     id: 'facebook',
     name: 'Facebook',
     handle: 'hiranmayedigital',
-    purpose: 'Community updates, client wins and digital marketing news.',
+    purpose: 'Announcements, notes from the work and digital marketing news.',
     tag: 'Community',
     href: 'https://www.facebook.com/hiranmayedigital',
     cta: 'Follow',
@@ -91,10 +91,11 @@ export const footerColumns = [
     id: 'company',
     title: 'Company',
     links: [
-      { label: 'About', to: '/about' },
-      { label: 'Why Us', to: '/about#why-us' },
-      { label: 'Insights', to: '/insights' },
-      { label: 'Contact', to: '/contact' },
+      { label: 'Inside Hiranmaye', to: '/about' },
+      { label: 'Our Team', to: '/about#team' },
+      { label: 'Our Clients', to: '/about#clients' },
+      { label: 'Resources & Insights', to: '/insights' },
+      { label: "Let's Connect", to: '/contact' },
     ],
   },
 ] as const;
